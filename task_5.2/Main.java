@@ -5,6 +5,6 @@ public class Main {
         //напишите тут ваш код
     }
 }
-public class Cat{
+class Cat{
     //напишите тут ваш код
 }
