@@ -6,7 +6,7 @@ public class Main {
         System.out.println(cat.name);
     }
 }
-public class Cat {
+class Cat {
     private String name = "безымянный кот";
     public void setName(String name) {
         //напишите тут ваш код
