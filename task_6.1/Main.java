@@ -10,10 +10,10 @@
 
 public class Main {
     public static void main(String[] args) {
-        new Solution.LuxuriousCar().printlnDesire();
-        new Solution.CheapCar().printlnDesire();
-        new Solution.Ferrari().printlnDesire();
-        new Solution.Lanos().printlnDesire();
+        new Main.LuxuriousCar().printlnDesire();
+        new Main.CheapCar().printlnDesire();
+        new Main.Ferrari().printlnDesire();
+        new Main.Lanos().printlnDesire();
     }
 
     public static class Ferrari {
