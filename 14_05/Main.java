@@ -20,18 +20,19 @@ public class Main {
             for (i=0; i<proxyArr.length; i++){
                 String ip = proxyArr[i].split("\t")[0];
                 int port = Integer.parseInt(proxyArr[i].split("\t")[1].trim());
-                System.out.print("Проверяю: "+ip+":"+port);
+                CheckProxyThread t = new CheckProxyThread(ip,port,fos);
+                t.start();
+                /*System.out.print("Проверяю: "+ip+":"+port);
                 if (checkProxy(ip,port)){
                     System.out.println(" - работает");
                     byte[] buffer = (ip+":"+port+"\n").getBytes();
                     fos.write(buffer, 0, buffer.length);
-                }else {System.out.println(" - не работает");}
+                }else {System.out.println(" - не работает");}*/
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Работа завершена!");
     }
 
     static boolean checkProxy(String ip,int port){
@@ -56,5 +57,30 @@ public class Main {
             return false;
         }
         return false;
+    }
+}
+
+class CheckProxyThread extends Thread{
+    private String ip;
+    private int port;
+    private  FileOutputStream fos;
+    public void run() {
+        if(Main.checkProxy(ip,port)){
+            System.out.println(ip+":"+port+" - Работает");
+            byte[] buffer = (ip+":"+port+"\n").getBytes();
+            try {
+                fos.write(buffer, 0, buffer.length);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(ip+":"+port+" - Не работает");
+        }
+    }
+
+    public CheckProxyThread(String ip, int port,FileOutputStream fos) {
+        this.ip = ip;
+        this.port = port;
+        this.fos = fos;
     }
 }
